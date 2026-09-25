@@ -1,0 +1,14 @@
+.feed-row {
+  background: transparent;
+  border-left: 0;
+  border-right: 0;
+  border-bottom: 0;
+  color: var(--text);
+  cursor: pointer;
+  text-align: left;
+  width: 100%;
+}
+
+.feed-row:hover {
+  background: rgba(255, 255, 255, .025);
+}
