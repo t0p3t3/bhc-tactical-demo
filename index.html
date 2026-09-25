@@ -6,8 +6,9 @@
   <meta name="theme-color" content="#07100d">
   <title>BHC Tactical · Mapa e Loja</title>
   <link rel="icon" href="assets/brand-mark.png">
-  <link rel="stylesheet" href="styles.css">
-  <link rel="stylesheet" href="overrides.css">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIINfQ3ynh0e9nEGCOu/6sP+ZbMZsnwQk5M=" crossorigin="">
+  <link rel="stylesheet" href="styles.css?v=4.7.1">
+  <link rel="stylesheet" href="overrides.css?v=4.7.1">
 </head>
 <body>
   <div class="shell">
@@ -43,11 +44,8 @@
             <div class="coverage"><p class="eyebrow">COBERTURA</p><span><i></i> AdminLog conectado</span><span><i></i> RPT conectado</span><p>Esta demonstração usa dados fictícios e não expõe jogadores reais.</p></div>
           </aside>
           <article class="card map-card">
-            <header><div><p class="eyebrow">LIVONIA</p><h2>Área tática</h2></div><div class="zoom"><button id="zoom-out">−</button><button id="zoom-reset">100%</button><button id="zoom-in">+</button></div></header>
-            <div id="map" class="map" tabindex="0" aria-label="Mapa interativo de demonstração">
-              <div id="surface" class="surface"><img src="assets/livonia-map.png" alt="Mapa topográfico de Livonia"><div class="grid"></div><div id="markers" class="markers"></div><button id="pin" class="pin hidden" aria-label="Ponto selecionado"></button></div>
-              <div class="north">N<span></span></div><div id="coords" class="coords">Mova o cursor sobre o mapa</div>
-            </div>
+            <header><div><p class="eyebrow">LIVONIA</p><h2>Área tática</h2></div><div class="map-tools"><div class="basemap-switch" aria-label="Estilo do mapa"><button class="active" data-basemap="topographic">Topográfico</button><button data-basemap="satellite">Satélite</button></div><div class="zoom"><button id="zoom-out" aria-label="Diminuir zoom">−</button><button id="zoom-reset">Visão geral</button><button id="zoom-in" aria-label="Aumentar zoom">+</button></div></div></header>
+            <div id="map" class="map" tabindex="0" aria-label="Mapa interativo de demonstração"><div id="coords" class="coords">Arraste, use a roda do mouse ou os botões para explorar</div></div>
             <footer><div><small>COORDENADA SELECIONADA</small><strong id="selection">Clique no mapa para marcar um ponto</strong></div><a id="izurvive" class="button disabled" href="https://www.izurvive.com/livonia/" target="_blank" rel="noopener noreferrer">Ver no iZurvive ↗</a></footer>
           </article>
           <aside class="card activity"><div class="section-title"><p class="eyebrow">AGORA</p><h2>Atividade recente</h2></div><div id="feed"></div><div class="fresh"><span>Atualização</span><strong>há poucos segundos</strong></div></aside>
@@ -62,8 +60,9 @@
         </div>
       </section>
     </main>
-    <footer class="site-footer"><span>Brasil Hardcore Manager 4.7</span><span>Protótipo público · dados sintéticos · mapa base iZurvive</span></footer>
+    <footer class="site-footer"><span>Brasil Hardcore Manager 4.7.1</span><span>Protótipo público · dados sintéticos · imagens e camadas: <a href="https://samsobjectfinder.com/about/" target="_blank" rel="noopener noreferrer">Sam’s DayZ Object Finder</a> · DayZ © Bohemia Interactive</span></footer>
   </div>
-  <script type="module" src="app.js"></script>
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+  <script type="module" src="app.js?v=4.7.1"></script>
 </body>
 </html>

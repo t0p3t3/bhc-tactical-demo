@@ -12,3 +12,121 @@
 .feed-row:hover {
   background: rgba(255, 255, 255, .025);
 }
+
+.map-card header {
+  gap: 14px;
+}
+
+.map-tools,
+.basemap-switch {
+  align-items: center;
+  display: flex;
+  gap: 7px;
+}
+
+.basemap-switch {
+  background: #07120d;
+  border: 1px solid var(--line);
+  border-radius: 9px;
+  padding: 3px;
+}
+
+.basemap-switch button {
+  background: transparent;
+  border: 0;
+  border-radius: 6px;
+  color: var(--muted);
+  cursor: pointer;
+  font-size: 9px;
+  font-weight: 800;
+  padding: 7px 9px;
+}
+
+.basemap-switch button.active {
+  background: #214632;
+  color: white;
+}
+
+#zoom-reset {
+  min-width: 78px;
+}
+
+.map.leaflet-container {
+  cursor: grab;
+  isolation: isolate;
+}
+
+.map.leaflet-container:active {
+  cursor: grabbing;
+}
+
+.tactical-marker {
+  background: currentColor;
+  border: 3px solid white;
+  border-radius: 50%;
+  box-shadow: 0 2px 13px rgba(0, 0, 0, .75), 0 0 0 5px color-mix(in srgb, currentColor 24%, transparent);
+  display: block;
+  height: 14px;
+  width: 14px;
+}
+
+.tactical-marker.kills,
+.tactical-marker.events {
+  border-radius: 3px;
+  transform: rotate(45deg);
+}
+
+.bhc-tooltip {
+  background: rgba(3, 12, 8, .94);
+  border: 1px solid rgba(255, 255, 255, .2);
+  color: #f1f7f3;
+  font-size: 11px;
+  font-weight: 700;
+}
+
+.bhc-tooltip::before {
+  border-right-color: rgba(3, 12, 8, .94) !important;
+}
+
+.coords {
+  pointer-events: none;
+}
+
+.product-art {
+  padding: 10px;
+}
+
+.product-art img {
+  height: 100%;
+  max-width: 100%;
+  object-fit: contain;
+  width: 100%;
+}
+
+.product-body code {
+  color: rgba(159, 206, 179, .62);
+  display: block;
+  font-size: 8px;
+  margin-top: 8px;
+  overflow-wrap: anywhere;
+}
+
+.site-footer a {
+  color: #b9dcca;
+}
+
+@media (max-width: 1050px) {
+  .map-card header,
+  .map-tools {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .map-tools {
+    width: 100%;
+  }
+
+  .basemap-switch button {
+    flex: 1;
+  }
+}
