@@ -9,6 +9,84 @@
   width: 100%;
 }
 
+/* Leaflet's structural rules are repeated locally so the map keeps working
+   even when a browser blocks the CDN stylesheet. */
+.leaflet-pane,
+.leaflet-map-pane,
+.leaflet-tile,
+.leaflet-marker-icon,
+.leaflet-marker-shadow,
+.leaflet-tile-container,
+.leaflet-pane > svg,
+.leaflet-pane > canvas,
+.leaflet-zoom-box,
+.leaflet-image-layer,
+.leaflet-layer {
+  left: 0;
+  position: absolute;
+  top: 0;
+}
+
+.leaflet-container {
+  -webkit-tap-highlight-color: transparent;
+  overflow: hidden;
+}
+
+.leaflet-container .leaflet-overlay-pane svg {
+  max-height: none !important;
+  max-width: none !important;
+}
+
+.leaflet-container .leaflet-marker-pane img,
+.leaflet-container .leaflet-shadow-pane img,
+.leaflet-container .leaflet-tile-pane img,
+.leaflet-container img.leaflet-image-layer,
+.leaflet-container .leaflet-tile {
+  max-height: none !important;
+  max-width: none !important;
+  padding: 0;
+  width: auto;
+}
+
+.leaflet-map-pane canvas {
+  z-index: 100;
+}
+
+.leaflet-tile-pane {
+  z-index: 200;
+}
+
+.leaflet-overlay-pane {
+  z-index: 400;
+}
+
+.leaflet-shadow-pane {
+  z-index: 500;
+}
+
+.leaflet-marker-pane {
+  z-index: 600;
+}
+
+.leaflet-tooltip-pane {
+  z-index: 650;
+}
+
+.leaflet-popup-pane {
+  z-index: 700;
+}
+
+.leaflet-zoom-animated {
+  transform-origin: 0 0;
+}
+
+.leaflet-tooltip {
+  pointer-events: none;
+  position: absolute;
+  user-select: none;
+  white-space: nowrap;
+}
+
 .feed-row:hover {
   background: rgba(255, 255, 255, .025);
 }
