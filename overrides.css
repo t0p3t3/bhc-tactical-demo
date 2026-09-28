@@ -170,6 +170,13 @@
   pointer-events: none;
 }
 
+.coordinate-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 7px;
+  justify-content: flex-end;
+}
+
 .product-art {
   padding: 10px;
 }

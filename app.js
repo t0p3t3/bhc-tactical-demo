@@ -41,7 +41,7 @@ const mapBounds = window.L.latLngBounds([[-mapExtent, 0], [0, mapExtent]]);
 const map = window.L.map('map', {
   crs: window.L.CRS.Simple,
   minZoom: 0,
-  maxZoom: 5,
+  maxZoom: 8,
   zoomControl: false,
   attributionControl: false,
   maxBounds: mapBounds.pad(.35),
@@ -50,9 +50,31 @@ const map = window.L.map('map', {
   zoomSnap: .25,
   zoomDelta: .5
 });
+map.createPane('fallbackPane');
+map.getPane('fallbackPane').style.zIndex = '100';
+map.getPane('fallbackPane').style.pointerEvents = 'none';
+
+function xamLayer(style) {
+  return window.L.tileLayer(`https://static.xam.nu/dayz/maps/livonia/1.27/${style}/{z}/{x}/{y}.webp`, {
+    bounds: mapBounds,
+    maxNativeZoom: 8,
+    maxZoom: 8,
+    noWrap: true,
+    updateWhenIdle: false,
+    keepBuffer: 3,
+    crossOrigin: true
+  });
+}
+
 const baseLayers = {
-  topographic: window.L.imageOverlay('assets/livonia-topographic.webp', mapBounds, { interactive: false }),
-  satellite: window.L.imageOverlay('assets/livonia-satellite.webp', mapBounds, { interactive: false })
+  topographic: window.L.layerGroup([
+    window.L.imageOverlay('assets/livonia-topographic.webp', mapBounds, { interactive: false, pane: 'fallbackPane' }),
+    xamLayer('topographic')
+  ]),
+  satellite: window.L.layerGroup([
+    window.L.imageOverlay('assets/livonia-satellite.webp', mapBounds, { interactive: false, pane: 'fallbackPane' }),
+    xamLayer('satellite')
+  ])
 };
 const markerGroups = Object.fromEntries(['players', 'kills', 'events', 'hotspots', 'buried'].map((name) => [name, window.L.layerGroup().addTo(map)]));
 let selectionMarker = null;
@@ -71,7 +93,7 @@ function fromLatLng(latlng) {
 function setBasemap(name) {
   if (!baseLayers[name] || state.basemap === name && map.hasLayer(baseLayers[name])) return;
   Object.values(baseLayers).forEach((layer) => map.removeLayer(layer));
-  baseLayers[name].addTo(map).bringToBack();
+  baseLayers[name].addTo(map);
   state.basemap = name;
   $$('[data-basemap]').forEach((button) => button.classList.toggle('active', button.dataset.basemap === name));
 }
@@ -113,8 +135,8 @@ function selectPoint(point) {
   const text = `X ${state.selection.x.toFixed(1)} · Z ${state.selection.z.toFixed(1)} · Y 0.0`;
   $('#selection').textContent = text;
   $('#delivery-coordinate').textContent = text;
-  $('#izurvive').classList.remove('disabled');
-  $('#izurvive').href = `https://www.izurvive.com/livonia/#location=${state.selection.x.toFixed(1)};${state.selection.z.toFixed(1)};2`;
+  $('#xam-map').classList.remove('disabled');
+  $('#xam-map').href = `https://dayz.xam.nu/livonia#${state.selection.x.toFixed(2)};${state.selection.z.toFixed(2)};4`;
   renderCart();
 }
 
